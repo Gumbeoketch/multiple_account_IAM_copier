@@ -2,15 +2,16 @@ import boto3
 import json
 
 # Define the master account's IAM client
-master_account_session = boto3.Session(profile_name='master-account')
+# Here we call the AWS IAM service
+master_account_session = boto3.Session(profile_name='default') # profile can be obtained by running "aws configure list-profiles" 
 iam_master = master_account_session.client('iam')
 
 # Define the target accounts and the role to assume
-target_accounts = ['123456789012', '234567890123', '345678901234', ...]  # Add all 17 target accounts
-role_name = 'YourCrossAccountRole'  # Role name that allows access to target accounts
+target_accounts = ['982081066392']  # Add all target accounts
+role_name = 'OrganizationAccountAccessRole'  # Role name that allows access to target account(s)
 
 # List of custom policies to copy
-custom_policies = ['CustomPolicy1', 'CustomPolicy2', 'CustomPolicy3']
+custom_policies = ['security_custom_policy']
 
 def assume_role(account_id, role_name):
     sts_client = boto3.client('sts')
@@ -28,7 +29,7 @@ def assume_role(account_id, role_name):
 
 def get_policy_arn(policy_name):
     try:
-        policy = iam_master.get_policy(PolicyArn=f'arn:aws:iam::master-account-id:policy/{policy_name}')
+        policy = iam_master.get_policy(PolicyArn=f'arn:aws:iam::510556361670:policy/{policy_name}')
         return policy['Policy']['Arn']
     except iam_master.exceptions.NoSuchEntityException:
         print(f'Policy {policy_name} does not exist in the master account.')
@@ -75,3 +76,4 @@ def copy_policies_to_accounts():
 
 if __name__ == "__main__":
     copy_policies_to_accounts()
+
