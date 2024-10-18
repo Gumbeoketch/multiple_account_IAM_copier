@@ -1,0 +1,47 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:Get*",
+                "iam:List*",
+                "iam:Generate*",
+                "iam:Simulate*",
+                "kms:List*",
+                "kms:Describe*",
+                "kms:Get*",
+                "kms:Decrypt",
+                "kms:Encrypt",
+                "kms:ReEncrypt*",
+                "kms:GenerateDataKey*",
+                "kms:GenerateRandom",
+                "cloudtrail:Describe*",
+                "cloudtrail:Get*",
+                "cloudtrail:List*",
+                "config:Describe*",
+                "config:Get*",
+                "config:List*",
+                "securityhub:Get*",
+                "securityhub:Describe*",
+                "securityhub:List*",
+                "shield:Describe*",
+                "shield:List*",
+                "waf:Get*",
+                "waf:List*",
+                "wafv2:Get*",
+                "wafv2:List*",
+                "guardduty:Get*",
+                "guardduty:List*",
+                "guardduty:Describe*",
+                "inspector:Get*",
+                "inspector:List*",
+                "inspector:Describe*",
+                "macie2:Get*",
+                "macie2:List*",
+                "macie2:Describe*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
